@@ -1,13 +1,17 @@
-import { generate, generateDeepSeek } from '../utils/ai.service.js';
+import { generate } from '../utils/ai.service.js';
 
 const getReview = async (req, res) => {
-  const code = req.body.code;
+  const { code, question } = req.body;
 
-  if (!code) {
-    return res.status(400).json({ message: 'Code is required' });
+  if (!code || !question) {
+    return res
+      .status(400)
+      .json({ message: 'Both code and question are required' });
   }
 
-  const response = await generate({ prompt: code });
+  const prompt = `Code:\n${code}\n\nQuestion:\n${question}`;
+
+  const response = await generate({ prompt });
 
   res.send(response);
 };

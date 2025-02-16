@@ -3,9 +3,7 @@ import dotenv from 'dotenv';
 import aiRouter from './routes/ai.routes.js'
 import cors from 'cors';
 
-dotenv.config({
-  path: './.env',
-});
+dotenv.config({});
 
 const app = express();
 
